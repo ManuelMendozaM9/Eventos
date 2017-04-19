@@ -1,0 +1,26 @@
+/*cnn.ejecutarSQL(               
+                    //Insercion a area
+                    "insert into area values (" + area + ""
+                    +", '" + costo_area + "')"
+            );        
+            cnn.ejecutarSQL(
+                    //Insercion a ambientacion
+                    "insert into ambientacion values (" + ambientacion + ""
+                    +", '" + ilumina + "'"
+                    +", '" + costo_ilumina + "')"
+            );        
+            cnn.ejecutarSQL(
+                    //Insercion a entretenimiento
+                    "insert into entretenimiento values (" + musica + ""
+                    +", '" + animador + "'"
+                    +", '" + costo_entreten + "')"
+                    
+                    
+            );
+            cnn.ejecutarSQL(
+                    //Insercion a mobiliario
+                    "insert into mobiliario values (" + silla + ""
+                    +", '" + mesa + "'"
+                    +", '" + bocina + "'"
+                    +", '" + costo_mobiliario + "')"
+            );*/
