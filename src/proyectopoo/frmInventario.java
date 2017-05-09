@@ -23,8 +23,22 @@ public class frmInventario extends javax.swing.JFrame {
     /**
      * Creates new form frmInventario
      */
-    public frmInventario() {
+    public frmInventario() throws SQLException, ClassNotFoundException {
         initComponents();
+        
+         Conexion cnn = new Conexion();
+         
+         ResultSet rs = cnn.ejecutarSQL("select * from mobiliario_inventario");
+         rs.next();
+            DefaultTableModel modelo = (DefaultTableModel) tblInvent.getModel();
+            while(rs.next()){
+                Object[] fila = new Object[3];
+                for (int i=0;i < fila.length; i++){
+                    fila[i]=rs.getObject(i+1);
+                }
+                modelo.addRow(fila);
+            }
+            tblInvent.setModel(modelo);
     }
 
     /**
@@ -36,47 +50,22 @@ public class frmInventario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        btnAgregar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        try {
+            frmVerEventos1 = new proyectopoo.frmVerEventos();
+        } catch (java.sql.SQLException e1) {
+            e1.printStackTrace();
+        } catch (java.lang.ClassNotFoundException e2) {
+            e2.printStackTrace();
+        }
         btnCancelar = new javax.swing.JButton();
-        txtMesas = new javax.swing.JTextField();
-        txtSillas = new javax.swing.JTextField();
-        txtBocinas = new javax.swing.JTextField();
         btnEventosVer = new javax.swing.JToggleButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblInvent = new javax.swing.JTable();
 
-        jLabel1.setText("Mesas");
-
-        jLabel2.setText("Sillas");
-
-        jLabel3.setText("Bocinas");
-
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Cerrar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
-            }
-        });
-
-        txtSillas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSillasActionPerformed(evt);
             }
         });
 
@@ -87,62 +76,41 @@ public class frmInventario extends javax.swing.JFrame {
             }
         });
 
+        tblInvent.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Cantidad", "Apartado"
+            }
+        ));
+        jScrollPane1.setViewportView(tblInvent);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(btnAgregar)
-                        .addGap(37, 37, 37)
-                        .addComponent(btnEliminar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtBocinas)
-                            .addComponent(txtSillas)
-                            .addComponent(txtMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnEventosVer)
                     .addComponent(btnCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(txtMesas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap(14, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtSillas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
                         .addComponent(btnEventosVer)
-                        .addGap(3, 3, 3)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtBocinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnCancelar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar)))
                 .addContainerGap())
         );
 
@@ -150,20 +118,8 @@ public class frmInventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
+        this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
-    private void txtSillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSillasActionPerformed
-        
-    }//GEN-LAST:event_txtSillasActionPerformed
 
     private void btnEventosVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEventosVerActionPerformed
         try {
@@ -183,16 +139,11 @@ public class frmInventario extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JToggleButton btnEventosVer;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField txtBocinas;
-    private javax.swing.JTextField txtMesas;
-    private javax.swing.JTextField txtSillas;
+    private proyectopoo.frmVerEventos frmVerEventos1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblInvent;
     // End of variables declaration//GEN-END:variables
 
     private void frmsetTitle(String registro) {
